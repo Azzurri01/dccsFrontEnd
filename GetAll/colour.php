@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<body>
-		<h1>Table: Colour</h1>
+		<h1>Colours: All</h1>
 		
 		<style>
 			.Colour-table
@@ -28,53 +28,47 @@
 			}
 		</style>
 		
-		<table class="Colour-table">
-		
-		<thead>
-			<tr>
-				<th>id</th>
-				<th>colour</th>
-			</tr>
-		</thead>
-		
-		<tbody>
-			<?php
-			
-			$url = 'localhost:8080';
-			
-			
-			//Establish connection
-			$conn = new mysqli("localhost", "root", "P@55w0rd", "dccs");
-			
-			//Check connection
-			if(!$conn)
-			{
-				die("Connection failed:". $conn-> connect_error);
-			}
-			//echo "Connection to Colour: Successful";
-			
-			//SQl query
-			$sql = "SELECt ID,Colour from colour";
-			
-			$result = $conn-> query($sql);
-			
-			if($result-> num_rows>0)
-			{
-				while ($row=$result-> fetch_assoc())
-				{
-					echo "<tr><td>". $row["ID"]. "</td><td>". $row["Colour"]. "</td></tr>";
-				}
-			echo "</table>";
-			}
-				else
-				{
-					echo "0 result";
-				}
-					$conn-> close();
-			?>
-		</tbody>
-		<br />
-		<input type="Submit" value="OK">
-		</table>
+
 	</body>
+	
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_PORT => "8080",
+  CURLOPT_URL => "http://localhost:8080/colour/getall",
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => "",
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 30,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => "GET",
+  CURLOPT_POSTFIELDS => "",
+  CURLOPT_HTTPHEADER => array(
+    "Accept: */*",
+    "Accept-Encoding: gzip, deflate",
+    "Authorization: Basic YWRtaW46Y3B1dFBUYWRtaW4=",
+    "Cache-Control: no-cache",
+    "Connection: keep-alive",
+    "Content-Type: application/json",
+    "Cookie: JSESSIONID=9DE0F81D7CC9ED589B8CBEA87693F6E1",
+    "Host: localhost:8080",
+    "Postman-Token: afb1ccfd-ff54-4052-bae9-f739878406e0,b405dcee-ce20-49e9-b120-6612f2bfdf64",
+    "User-Agent: PostmanRuntime/7.17.1",
+    "cache-control: no-cache"
+  ),
+));
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+  echo "cURL Error #:" . $err;
+} else {
+  echo $response;
+}
+	?>
 </html>

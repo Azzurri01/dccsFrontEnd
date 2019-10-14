@@ -4,6 +4,8 @@
 		<h1>Create</h1>
 		
 		<style>
+
+		
 			.Colour-form
 			{
 				border: 2px solid black;
@@ -14,23 +16,11 @@
 			}
 		
 		</style>
-		
-		<form class="Colour-form" action="" method="post">
-			<br />
-			<input type="text" name="name" class="form-control" id="name" placeholder="Enter Colour"><br>
-			<input type="submit" class="btn btn-info" value="Create">
-			<input type="Reset" value="Reset">
-		</form>
 
 <?php
 $curl = curl_init();
-$name = $_POST["name"];
-
-if(!$name=="")
-{
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $name = $_POST["name"];
-}
+//$colour = $_POST["colour"];
+//$colour = "";
 
 curl_setopt_array($curl, array(
   CURLOPT_PORT => "8080",
@@ -41,7 +31,7 @@ curl_setopt_array($curl, array(
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => "{\"colour\": \"$name\"}",
+  CURLOPT_POSTFIELDS => "{\"colour\": \"colour\"}",
   CURLOPT_HTTPHEADER => array(
     "Accept: */*",
     "Accept-Encoding: gzip, deflate",
@@ -68,9 +58,13 @@ if ($err) {
 } else {
   echo $response;
 }
-}
 ?>
-
+			<form class="Colour-form" action="" method="post">
+			Colour:<br /> <input type="text" id="colour"/><br />
+			<br />
+		<input type="Reset" value="Reset">
+		<input type="Submit" name= "Submit" value="Create">
+		</form>
 
 	</body>
 </html>
