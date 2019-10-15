@@ -7,13 +7,13 @@
 
 	<body>
 		<style>
-			.Colour-form
+			.Grade-form
 			{
 				border: 2px solid black;
 				max-width: 250px;
 				max-height: 200px;
 				padding: 3px;
-				background: #dddddd;
+				background-color: #dddddd;
 				margin-left: auto;
 				margin-right: auto;
 			}
@@ -28,64 +28,68 @@
   <nav>
     <ul>
 		<li> <a href="/Frontend/php/Home.html">Home</a> </li>
-		<li> <a href="/Frontend/php/Colour.html">Colour</a> </li>
+		<li> <a href="/Frontend/php/Grade.html">Grade</a> </li>
     </ul>
   </nav>
   </div>
 		
-		<form align="center" class="Colour-form" action="" method="post">
-		<h1 align="left">Create</h1>
+		<form class="Grade-form" action="" method="put">
+		<h1>Update</h1>
 		<table>
 			<tr>
-				<td>Colour:</td>
-				<td><input type="text" name="colour" class="form-control" id="colour" placeholder="Enter Colour"></td>
+				<td>ID:</td>
+				<td><input type="text" name="id" class="form-control" placeholder="Enter ID"></td>
 			</tr>
 			<tr>
-			<td><input type="submit" name="submit" class="btn btn-info" value="Create"></td>
+				<td>Grade:</td>
+				<td><input type="text" name="grade" class="form-control" placeholder="Enter Grade"></td>
+			</tr>
+			<tr>
+			<td><input type="submit" name="submit" class="btn btn-info" value="Update"></td>
 			</tr>
 		</table>
-			<br />
 		</form>
-
+	
 <?php
 $curl = curl_init();
-$colour = "";
+$id = "";
+$grade = "";
 
-if(isset($_POST['colour']))
-{
-	$colour = $_POST["colour"];
-}
-	
-if ($_SERVER["REQUEST_METHOD"] == "POST") 
-{
-	$name = $_POST["colour"];
-}
+		if(isset($_GET['id']))
+		{
+			$id = $_GET["id"];
+		}
+		
+		if(isset($_GET['grade']))
+		{
+			$grade = $_GET["grade"];
+		}
 
-if(isset($_POST['submit']))
+if(isset($_GET['submit']))
 {
-	if(!empty($_POST['colour']))
+	if(!empty($_GET['id']) && !empty($_GET['grade']))
 	{
-		curl_setopt_array($curl, array(
+  curl_setopt_array($curl, array(
   CURLOPT_PORT => "8080",
-  CURLOPT_URL => "http://localhost:8080/colour/create",
+  CURLOPT_URL => "http://localhost:8080/grade/update",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => "{\"colour\": \"$colour\"}",
+  CURLOPT_CUSTOMREQUEST => "PUT",
+  CURLOPT_POSTFIELDS => "{\"id\": \"$id\",\"grade\": \"$grade\"}",
   CURLOPT_HTTPHEADER => array(
     "Accept: */*",
     "Accept-Encoding: gzip, deflate",
     "Authorization: Basic YWRtaW46Y3B1dFBUYWRtaW4=",
     "Cache-Control: no-cache",
     "Connection: keep-alive",
-    "Content-Length: 33",
+    "Content-Length: 66",
     "Content-Type: application/json",
-    "Cookie: JSESSIONID=D7DF533A3E8553D146013B049EBD42A4",
+    "Cookie: JSESSIONID=8D11DFE28B97F89A1B7997CF97C3FAE3",
     "Host: localhost:8080",
-    "Postman-Token: f351c74e-7fa1-4d2f-86cc-112f68aa0358,70469f32-4288-46ac-90e5-066cc7f19463",
+    "Postman-Token: a0fdbffd-0c40-4539-b6ff-5b74b9b2c123,57ba6f96-dede-4a2d-b5d4-5e123e83485e",
     "User-Agent: PostmanRuntime/7.17.1",
     "cache-control: no-cache"
   ),
@@ -99,32 +103,21 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  echo "<p style='margin-left: 660px'>Colour created successfully!!!</p>";
+  echo "<p style='margin-left: 660px'>Grade updated successfully!!!</p>";
 }
-		
 	}
 	
 	else
-{
-	echo "<p style='margin-left: 660px'>Error #: No colour entered!!!</p>";
-}
-
+	{
+		echo "<p style='margin-left: 630px'>Error #: Entries cannot be blank!!!</p>";
+	}
 }
 ?>
-
-
+	
 	</body>
 	
-	<footer style="background-color: #dddddd", align="center", width="500px">
+		<footer style="background-color: #dddddd", align="center", width="500px">
 	<h3>Your child is in good care...!</h3>
 	</footer>
+	
 </html>
-
-<?php
-function pre_r($array)
-{
-	echo '<pre>';
-	print_r($array);
-	echo '</pre>';
-}
-?>

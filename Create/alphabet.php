@@ -7,7 +7,7 @@
 
 	<body>
 		<style>
-			.Colour-form
+			.Alphabet-form
 			{
 				border: 2px solid black;
 				max-width: 250px;
@@ -28,17 +28,17 @@
   <nav>
     <ul>
 		<li> <a href="/Frontend/php/Home.html">Home</a> </li>
-		<li> <a href="/Frontend/php/Colour.html">Colour</a> </li>
+		<li> <a href="/Frontend/php/Alphabet.html">Alphabet</a> </li>
     </ul>
   </nav>
   </div>
 		
-		<form align="center" class="Colour-form" action="" method="post">
+		<form align="center" class="Alphabet-form" action="" method="post">
 		<h1 align="left">Create</h1>
 		<table>
 			<tr>
-				<td>Colour:</td>
-				<td><input type="text" name="colour" class="form-control" id="colour" placeholder="Enter Colour"></td>
+				<td>Alphabet:</td>
+				<td><input type="text" name="alphabet" class="form-control" id="alphabet" placeholder="Enter Alphabet"></td>
 			</tr>
 			<tr>
 			<td><input type="submit" name="submit" class="btn btn-info" value="Create"></td>
@@ -49,32 +49,32 @@
 
 <?php
 $curl = curl_init();
-$colour = "";
+$letter = "";
 
-if(isset($_POST['colour']))
+if(isset($_POST['alphabet']))
 {
-	$colour = $_POST["colour"];
+	$letter = $_POST["alphabet"];
 }
 	
 if ($_SERVER["REQUEST_METHOD"] == "POST") 
 {
-	$name = $_POST["colour"];
+	$name = $_POST["alphabet"];
 }
 
 if(isset($_POST['submit']))
 {
-	if(!empty($_POST['colour']))
+	if(!empty($_POST['alphabet']))
 	{
 		curl_setopt_array($curl, array(
   CURLOPT_PORT => "8080",
-  CURLOPT_URL => "http://localhost:8080/colour/create",
+  CURLOPT_URL => "http://localhost:8080/alphabet/create",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => "{\"colour\": \"$colour\"}",
+  CURLOPT_POSTFIELDS => "{\"letter\": \"$letter\"}",
   CURLOPT_HTTPHEADER => array(
     "Accept: */*",
     "Accept-Encoding: gzip, deflate",
@@ -99,14 +99,14 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  echo "<p style='margin-left: 660px'>Colour created successfully!!!</p>";
+  echo "<p style='margin-left: 660px'>Letter created successfully!!!</p>";
 }
 		
 	}
 	
 	else
 {
-	echo "<p style='margin-left: 660px'>Error #: No colour entered!!!</p>";
+	echo "<p style='margin-left: 660px'>Error #: No letter entered!!!</p>";
 }
 
 }

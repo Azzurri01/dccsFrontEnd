@@ -41,7 +41,7 @@
 				<td><input type="text" name="id" class="form-control" id="name" placeholder="Enter ID"><br></td>
 			</tr>
 			<tr>
-			<td><input type="submit" class="btn btn-info" value="Delete"></td>
+			<td><input type="submit" name="submit" class="btn btn-info" value="Delete"></td>
 			</tr>
 		</table>
 		</form>
@@ -52,10 +52,17 @@ $id = "";
 	
 	if ($_SERVER["REQUEST_METHOD"] == "GET") 
 	{
-	  $id = $_GET["id"];
+		if(isset($_GET['id']))
+		{
+			$id = $_GET["id"];
+		}
 	}
-	
-curl_setopt_array($curl, array(
+
+if(isset($_GET['submit']))
+{
+if(!empty($_GET['id']))
+{
+	curl_setopt_array($curl, array(
   CURLOPT_PORT => "8080",
   CURLOPT_URL => "http://localhost:8080/colour/delete/$id",
   CURLOPT_RETURNTRANSFER => true,
@@ -84,12 +91,23 @@ $response = curl_exec($curl);
 $err = curl_error($curl);
 
 curl_close($curl);
-/*
+
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  echo $response;
-}*/
+  echo "<p style='margin-left: 660px'>ID successfully deleted!!!</p>";
+}
+}
+
+else
+{
+	echo "<p style='margin-left: 660px'>Error #: No ID entered!!!</p>";
+}
+
+}
+
+
+
 ?>
 	</body>
 	

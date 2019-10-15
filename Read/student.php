@@ -7,13 +7,13 @@
 
 	<body>
 		<style>
-			.Colour-form
+			.Student-form
 			{
 				border: 2px solid black;
 				max-width: 250px;
 				max-height: 200px;
 				padding: 3px;
-				background: #dddddd;
+				background-color: #dddddd;
 				margin-left: auto;
 				margin-right: auto;
 			}
@@ -28,64 +28,61 @@
   <nav>
     <ul>
 		<li> <a href="/Frontend/php/Home.html">Home</a> </li>
-		<li> <a href="/Frontend/php/Colour.html">Colour</a> </li>
+		<li> <a href="/Frontend/php/Student.html">Student</a> </li>
     </ul>
   </nav>
   </div>
 		
-		<form align="center" class="Colour-form" action="" method="post">
-		<h1 align="left">Create</h1>
+		<form class="Student-form" action="" method="get">
+		<h1>Read</h1>
 		<table>
 			<tr>
-				<td>Colour:</td>
-				<td><input type="text" name="colour" class="form-control" id="colour" placeholder="Enter Colour"></td>
+				<td>ID:</td>
+				<td><input type="text" name="id" class="form-control" id="name" placeholder="Enter ID"><br></td>
 			</tr>
 			<tr>
-			<td><input type="submit" name="submit" class="btn btn-info" value="Create"></td>
+			<td><input type="submit" name="submit" class="btn btn-info" value="Read"></td>
 			</tr>
 		</table>
-			<br />
 		</form>
-
+		
 <?php
 $curl = curl_init();
-$colour = "";
+$id = "";
 
-if(isset($_POST['colour']))
-{
-	$colour = $_POST["colour"];
-}
-	
-if ($_SERVER["REQUEST_METHOD"] == "POST") 
-{
-	$name = $_POST["colour"];
-}
-
-if(isset($_POST['submit']))
-{
-	if(!empty($_POST['colour']))
+if ($_SERVER["REQUEST_METHOD"] == "GET") 
 	{
-		curl_setopt_array($curl, array(
+		if(isset($_GET['id']))
+		{
+			$id = $_GET["id"];
+		}
+	}
+
+if(isset($_GET['submit']))
+{
+	if(!empty($_GET['id']))
+	{
+curl_setopt_array($curl, array(
   CURLOPT_PORT => "8080",
-  CURLOPT_URL => "http://localhost:8080/colour/create",
+  CURLOPT_URL => "http://localhost:8080/student/read/$id",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => "{\"colour\": \"$colour\"}",
+  CURLOPT_CUSTOMREQUEST => "GET",
+  CURLOPT_POSTFIELDS => "{\r\n    \"student\": \"test\"\r\n}",
   CURLOPT_HTTPHEADER => array(
     "Accept: */*",
     "Accept-Encoding: gzip, deflate",
     "Authorization: Basic YWRtaW46Y3B1dFBUYWRtaW4=",
     "Cache-Control: no-cache",
     "Connection: keep-alive",
-    "Content-Length: 33",
+    "Content-Length: 26",
     "Content-Type: application/json",
-    "Cookie: JSESSIONID=D7DF533A3E8553D146013B049EBD42A4",
+    "Cookie: JSESSIONID=9DE0F81D7CC9ED589B8CBEA87693F6E1",
     "Host: localhost:8080",
-    "Postman-Token: f351c74e-7fa1-4d2f-86cc-112f68aa0358,70469f32-4288-46ac-90e5-066cc7f19463",
+    "Postman-Token: 84858005-e483-4f86-a54b-ed4fed34d8b9,712523c2-db52-4496-b639-44461463a903",
     "User-Agent: PostmanRuntime/7.17.1",
     "cache-control: no-cache"
   ),
@@ -99,32 +96,19 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  echo "<p style='margin-left: 660px'>Colour created successfully!!!</p>";
+  echo "<p style='margin-left: 550px'>$response</p>";
 }
-		
 	}
-	
 	else
-{
-	echo "<p style='margin-left: 660px'>Error #: No colour entered!!!</p>";
-}
-
+	{
+		echo "<p style='margin-left: 660px'>Error #: No ID entered!!!</p>";
+	}
 }
 ?>
+</body>
 
-
-	</body>
-	
 	<footer style="background-color: #dddddd", align="center", width="500px">
 	<h3>Your child is in good care...!</h3>
 	</footer>
+	
 </html>
-
-<?php
-function pre_r($array)
-{
-	echo '<pre>';
-	print_r($array);
-	echo '</pre>';
-}
-?>

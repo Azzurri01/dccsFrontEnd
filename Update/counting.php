@@ -7,7 +7,7 @@
 
 	<body>
 		<style>
-			.Colour-form
+			.Counting-form
 			{
 				border: 2px solid black;
 				max-width: 250px;
@@ -28,12 +28,12 @@
   <nav>
     <ul>
 		<li> <a href="/Frontend/php/Home.html">Home</a> </li>
-		<li> <a href="/Frontend/php/Colour.html">Colour</a> </li>
+		<li> <a href="/Frontend/php/Counting.html">Counting</a> </li>
     </ul>
   </nav>
   </div>
 		
-		<form class="Colour-form" action="" method="put">
+		<form class="Counting-form" action="" method="put">
 		<h1>Update</h1>
 		<table>
 			<tr>
@@ -41,8 +41,8 @@
 				<td><input type="text" name="id" class="form-control" placeholder="Enter ID"></td>
 			</tr>
 			<tr>
-				<td>Colour:</td>
-				<td><input type="text" name="colour" class="form-control" placeholder="Enter Colour"></td>
+				<td>Counting:</td>
+				<td><input type="text" name="counting" class="form-control" placeholder="Enter Counting"></td>
 			</tr>
 			<tr>
 			<td><input type="submit" name="submit" class="btn btn-info" value="Update"></td>
@@ -53,32 +53,32 @@
 <?php
 $curl = curl_init();
 $id = "";
-$colour = "";
+$counting = "";
 
 		if(isset($_GET['id']))
 		{
 			$id = $_GET["id"];
 		}
 		
-		if(isset($_GET['colour']))
+		if(isset($_GET['counting']))
 		{
-			$colour = $_GET["colour"];
+			$counting = $_GET["counting"];
 		}
 
 if(isset($_GET['submit']))
 {
-	if(!empty($_GET['id']) && !empty($_GET['colour']))
+	if(!empty($_GET['id']) && !empty($_GET['counting']))
 	{
   curl_setopt_array($curl, array(
   CURLOPT_PORT => "8080",
-  CURLOPT_URL => "http://localhost:8080/colour/update",
+  CURLOPT_URL => "http://localhost:8080/counting/update",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "PUT",
-  CURLOPT_POSTFIELDS => "{\"id\": \"$id\",\"colour\": \"$colour\"}",
+  CURLOPT_POSTFIELDS => "{\"id\": \"$id\",\"number\": \"$counting\"}",
   CURLOPT_HTTPHEADER => array(
     "Accept: */*",
     "Accept-Encoding: gzip, deflate",
@@ -103,7 +103,7 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  echo "<p style='margin-left: 660px'>Colour updated successfully!!!</p>";
+  echo "<p style='margin-left: 660px'>Counting updated successfully!!!</p>";
 }
 	}
 	

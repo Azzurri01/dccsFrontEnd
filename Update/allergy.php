@@ -7,7 +7,7 @@
 
 	<body>
 		<style>
-			.Colour-form
+			.Allergy-form
 			{
 				border: 2px solid black;
 				max-width: 250px;
@@ -28,12 +28,12 @@
   <nav>
     <ul>
 		<li> <a href="/Frontend/php/Home.html">Home</a> </li>
-		<li> <a href="/Frontend/php/Colour.html">Colour</a> </li>
+		<li> <a href="/Frontend/php/Allergy.html">Allergy</a> </li>
     </ul>
   </nav>
   </div>
 		
-		<form class="Colour-form" action="" method="put">
+		<form class="Allergy-form" action="" method="put">
 		<h1>Update</h1>
 		<table>
 			<tr>
@@ -41,8 +41,8 @@
 				<td><input type="text" name="id" class="form-control" placeholder="Enter ID"></td>
 			</tr>
 			<tr>
-				<td>Colour:</td>
-				<td><input type="text" name="colour" class="form-control" placeholder="Enter Colour"></td>
+				<td>Allergy:</td>
+				<td><input type="text" name="allergy" class="form-control" placeholder="Enter Allergy"></td>
 			</tr>
 			<tr>
 			<td><input type="submit" name="submit" class="btn btn-info" value="Update"></td>
@@ -53,32 +53,32 @@
 <?php
 $curl = curl_init();
 $id = "";
-$colour = "";
+$allergy = "";
 
 		if(isset($_GET['id']))
 		{
 			$id = $_GET["id"];
 		}
 		
-		if(isset($_GET['colour']))
+		if(isset($_GET['allergy']))
 		{
-			$colour = $_GET["colour"];
+			$allergy = $_GET["allergy"];
 		}
 
 if(isset($_GET['submit']))
 {
-	if(!empty($_GET['id']) && !empty($_GET['colour']))
+	if(!empty($_GET['id']) && !empty($_GET['allergy']))
 	{
   curl_setopt_array($curl, array(
   CURLOPT_PORT => "8080",
-  CURLOPT_URL => "http://localhost:8080/colour/update",
+  CURLOPT_URL => "http://localhost:8080/allergy/update",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "PUT",
-  CURLOPT_POSTFIELDS => "{\"id\": \"$id\",\"colour\": \"$colour\"}",
+  CURLOPT_POSTFIELDS => "{\"id\": \"$id\",\"name\": \"$allergy\"}",
   CURLOPT_HTTPHEADER => array(
     "Accept: */*",
     "Accept-Encoding: gzip, deflate",
@@ -103,7 +103,7 @@ curl_close($curl);
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
-  echo "<p style='margin-left: 660px'>Colour updated successfully!!!</p>";
+  echo "<p style='margin-left: 660px'>Allergy updated successfully!!!</p>";
 }
 	}
 	
