@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
-	<body style="background: url(abc.jpeg) no-repeat">
-		<h1>Update</h1>
-		
+
+<head>
+<h1 style="background-color: #dddddd", align="center", width="500px">DayCare Center System</h1>
+</head>
+
+	<body>
 		<style>
 			.Colour-form
 			{
@@ -11,16 +14,40 @@
 				max-height: 200px;
 				padding: 3px;
 				background-color: #dddddd;
+				margin-left: auto;
+				margin-right: auto;
 			}
-		
+			.menu
+			{
+				margin-left: 690px;
+				margin-right: auto;
+			}
 		</style>
 		
+<div class="menu">
+  <nav>
+    <ul>
+		<li> <a href="/Frontend/php/Home.html">Home</a> </li>
+		<li> <a href="/Frontend/php/Colour.html">Colour</a> </li>
+    </ul>
+  </nav>
+  </div>
+		
 		<form class="Colour-form" action="" method="put">
-			<br />
-			<input type="text" name="id" class="form-control" placeholder="Enter ID"><br>
-			<input type="text" name="colour" class="form-control" placeholder="New Colour"><br>
-			<input type="submit" class="btn btn-info" value="Update">
-			<input type="Reset" value="Reset">
+		<h1>Update</h1>
+		<table>
+			<tr>
+				<td>ID:</td>
+				<td><input type="text" name="id" class="form-control" placeholder="Enter ID"></td>
+			</tr>
+			<tr>
+				<td>Colour:</td>
+				<td><input type="text" name="colour" class="form-control" placeholder="Enter Colour"></td>
+			</tr>
+			<tr>
+			<td><input type="submit" class="btn btn-info" value="Update"></td>
+			</tr>
+		</table>
 		</form>
 	
 <?php
@@ -58,13 +85,18 @@ $response = curl_exec($curl);
 $err = curl_error($curl);
 
 curl_close($curl);
-
+/*
 if ($err) {
   echo "cURL Error #:" . $err;
 } else {
   echo $response;
-}
+}*/
 ?>
 	
 	</body>
+	
+		<footer style="background-color: #dddddd", align="center", width="500px">
+	<h3>Your child is in good care...!</h3>
+	</footer>
+	
 </html>

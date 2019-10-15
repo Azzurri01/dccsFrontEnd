@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
-	<body style="background: url(abc.jpeg) no-repeat">
-		<h1>Read</h1>
-		
+
+<head>
+<h1 style="background-color: #dddddd", align="center", width="500px">DayCare Center System</h1>
+</head>
+
+	<body>
 		<style>
 			.Colour-form
 			{
@@ -11,15 +14,36 @@
 				max-height: 200px;
 				padding: 3px;
 				background-color: #dddddd;
+				margin-left: auto;
+				margin-right: auto;
 			}
-		
+			.menu
+			{
+				margin-left: 690px;
+				margin-right: auto;
+			}
 		</style>
 		
+<div class="menu">
+  <nav>
+    <ul>
+		<li> <a href="/Frontend/php/Home.html">Home</a> </li>
+		<li> <a href="/Frontend/php/Colour.html">Colour</a> </li>
+    </ul>
+  </nav>
+  </div>
+		
 		<form class="Colour-form" action="" method="get">
-			<br />
-			<input type="text" name="id" class="form-control" id="name" placeholder="Enter ID"><br>
-			<input type="submit" class="btn btn-info" value="Read">
-			<input type="Reset" value="Reset">
+		<h1>Read</h1>
+		<table>
+			<tr>
+				<td>ID:</td>
+				<td><input type="text" name="id" class="form-control" id="name" placeholder="Enter ID"><br></td>
+			</tr>
+			<tr>
+			<td><input type="submit" class="btn btn-info" value="Read"></td>
+			</tr>
+		</table>
 		</form>
 		
 <?php
@@ -69,4 +93,9 @@ if ($err) {
 }
 ?>
 </body>
+
+	<footer style="background-color: #dddddd", align="center", width="500px">
+	<h3>Your child is in good care...!</h3>
+	</footer>
+	
 </html>

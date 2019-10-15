@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+<h1 style="background-color: #dddddd", align="center", width="500px">DayCare Center System</h1>
+</head>
+
 	<body>
+	
+	<div class="menu">
+  <nav>
+    <ul>
+		<li> <a href="/Frontend/php/Home.html">Home</a> </li>
+		<li> <a href="/Frontend/php/Colour.html">Colour</a> </li>
+    </ul>
+  </nav>
+  </div>
+  
 		<h1>Colours: All</h1>
 		
 		<style>
@@ -26,9 +41,12 @@
 				background-color: #33FFDF;
 				font-weight: bold;
 			}
+			.menu
+			{
+				margin-left: 690px;
+				margin-right: auto;
+			}
 		</style>
-		
-
 	</body>
 	
 <?php
@@ -70,5 +88,10 @@ if ($err) {
 } else {
   echo $response;
 }
-	?>
+?>
+
+	<footer style="background-color: #dddddd", align="center", width="500px">
+	<h3>Your child is in good care...!</h3>
+	</footer>
+	
 </html>

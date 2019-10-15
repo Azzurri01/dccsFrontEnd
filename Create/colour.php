@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
-	<body style="background: url(abc.jpeg) no-repeat">
-		<h1>Create</h1>
-		
+
+<head>
+<h1 style="background-color: #dddddd", align="center", width="500px">DayCare Center System</h1>
+</head>
+
+	<body>
 		<style>
 			.Colour-form
 			{
@@ -11,26 +14,48 @@
 				max-height: 200px;
 				padding: 3px;
 				background: #dddddd;
+				margin-left: auto;
+				margin-right: auto;
 			}
-		
+			.menu
+			{
+				margin-left: 690px;
+				margin-right: auto;
+			}
 		</style>
 		
-		<form class="Colour-form" action="" method="post">
+<div class="menu">
+  <nav>
+    <ul>
+		<li> <a href="/Frontend/php/Home.html">Home</a> </li>
+		<li> <a href="/Frontend/php/Colour.html">Colour</a> </li>
+    </ul>
+  </nav>
+  </div>
+		
+		<form align="center" class="Colour-form" action="" method="post">
+		<h1 align="left">Create</h1>
+		<table>
+			<tr>
+				<td>Colour:</td>
+				<td><input type="text" name="colour" class="form-control" id="colour" placeholder="Enter Colour"></td>
+			</tr>
+			<tr>
+			<td><input type="submit" class="btn btn-info" value="Create"></td>
+			</tr>
+		</table>
 			<br />
-			<input type="text" name="name" class="form-control" id="name" placeholder="Enter Colour"><br>
-			<input type="submit" class="btn btn-info" value="Create">
-			<input type="Reset" value="Reset">
 		</form>
 
 <?php
 $curl = curl_init();
-$name = $_POST["name"];
+$colour = $_POST["colour"];
+	
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	$name = $_POST["colour"];
+	}
 
-if(!$name=="")
-{
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $name = $_POST["name"];
-}
+
 
 curl_setopt_array($curl, array(
   CURLOPT_PORT => "8080",
@@ -41,7 +66,7 @@ curl_setopt_array($curl, array(
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => "{\"colour\": \"$name\"}",
+  CURLOPT_POSTFIELDS => "{\"colour\": \"$colour\"}",
   CURLOPT_HTTPHEADER => array(
     "Accept: */*",
     "Accept-Encoding: gzip, deflate",
@@ -68,11 +93,15 @@ if ($err) {
 } else {
   echo $response;
 }
-}
+
 ?>
 
 
 	</body>
+	
+	<footer style="background-color: #dddddd", align="center", width="500px">
+	<h3>Your child is in good care...!</h3>
+	</footer>
 </html>
 
 <?php
