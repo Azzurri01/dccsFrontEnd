@@ -7,7 +7,7 @@
 
 	<body>
 		<style>
-			.Allergy-form
+			.Grade-form
 			{
 				border: 2px solid black;
 				max-width: 250px;
@@ -28,12 +28,12 @@
   <nav>
     <ul>
 		<li> <a href="/Frontend/php/Home.html">Home</a> </li>
-		<li> <a href="/Frontend/php/Allergy.html">Allergy</a> </li>
+		<li> <a href="/Frontend/php/Grade.html">Grade</a> </li>
     </ul>
   </nav>
   </div>
 		
-		<form class="Allergy-form" action="" method="get">
+		<form class="Grade-form" action="" method="get">
 		<h1>Delete</h1>
 		<table>
 			<tr>
@@ -64,7 +64,7 @@ if(!empty($_GET['id']))
 {
   curl_setopt_array($curl, array(
   CURLOPT_PORT => "8080",
-  CURLOPT_URL => "http://localhost:8080/allergy/delete/$id",
+  CURLOPT_URL => "http://localhost:8080/grade/delete/$id",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,

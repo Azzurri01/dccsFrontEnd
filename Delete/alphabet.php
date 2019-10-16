@@ -62,9 +62,9 @@ if(isset($_GET['submit']))
 {
 if(!empty($_GET['id']))
 {
-	curl_setopt_array($curl, array(
+  curl_setopt_array($curl, array(
   CURLOPT_PORT => "8080",
-  CURLOPT_URL => "http://localhost:8080/alphabet/delete/$id",
+  CURLOPT_URL => "http://localhost:8080/alpabet/delete/$id",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
@@ -89,14 +89,24 @@ if(!empty($_GET['id']))
 
 $response = curl_exec($curl);
 $err = curl_error($curl);
+$statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
 curl_close($curl);
 
-if ($err) {
+if ($err) 
+{
   echo "cURL Error #:" . $err;
-} else {
-  echo "<p style='margin-left: 660px'>ID successfully deleted!!!</p>";
-}
+} 
+
+	else if($statusCode == 200)
+	{
+		echo "<p style='margin-left: 660px'>ID successfully deleted</p>";
+	}
+	
+		else
+		{
+			echo "<p style='margin-left: 660px'>Unable to locate ID: $id</p>";
+		}
 }
 
 else

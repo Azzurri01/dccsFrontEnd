@@ -68,8 +68,8 @@ $curl = curl_init();
 $fname= "";
 $lname= "";
 $gender= "";
-$age= "";
 $dob= "";
+$age= "";
 
 if(isset($_POST['fname']))
 {
@@ -99,8 +99,8 @@ if(isset($_POST['age']))
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") 
 {
-	//$name = $_POST["fname"];
-	//$name = $_POST["lname"];
+	$name = $_POST["fname"];
+	$name = $_POST["lname"];
 	$name = $_POST["gender"];
 	$name = $_POST["dob"];
 	$name = $_POST["age"];
@@ -117,18 +117,18 @@ curl_setopt_array($curl, array(
   CURLOPT_TIMEOUT => 30,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => "{\r\n    \"gender\": \"m\",\r\n    \"dob\": \"d\",\r\n    \"age\": 0,\r\n    \"firstName\": \"dd\",\r\n    \"lastName\": \"dd\"\r\n}",
+  CURLOPT_POSTFIELDS => "{\r\n    \"gender\": \"$gender\",\r\n    \"dob\": \"$dob\",\r\n    \"age\": $age,\r\n    \"firstName\": \"$fname\",\r\n    \"lastName\": \"$lname\"\r\n}",
   CURLOPT_HTTPHEADER => array(
     "Accept: */*",
     "Accept-Encoding: gzip, deflate",
     "Authorization: Basic YWRtaW46Y3B1dFBUYWRtaW4=",
     "Cache-Control: no-cache",
     "Connection: keep-alive",
-    "Content-Length: 21",
+    "Content-Length: 119",
     "Content-Type: application/json",
-    "Cookie: JSESSIONID=6354D515A8B7513D2B7858815FADB76D",
+    "Cookie: JSESSIONID=5942C55D37E0E5ECED0DF15CE0386A0B",
     "Host: localhost:8080",
-    "Postman-Token: 6c6f5774-6c8f-47a0-ab92-bc9e19c9de6b,c04fd2fd-e3c1-44a7-805b-7b77fd23f046",
+    "Postman-Token: 9709add2-9a53-486e-8444-c3f30a7aa945,4d131e06-8ae7-45c1-b8e0-0cc060d2fb4a",
     "User-Agent: PostmanRuntime/7.18.0",
     "cache-control: no-cache"
   ),

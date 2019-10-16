@@ -4,7 +4,6 @@
 <head>
 <h1 style="background-color: #dddddd", align="center", width="500px">DayCare Center System</h1>
 </head>
-
 	<body>
 		<style>
 			.Address-form
@@ -22,8 +21,7 @@
 				margin-left: 690px;
 				margin-right: auto;
 			}
-		</style>
-		
+		</style>	
 <div class="menu">
   <nav>
     <ul>
@@ -108,7 +106,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 if(isset($_POST['submit']))
 {
-  curl_setopt_array($curl, array(
+	if(!empty($_POST["number"]) && !empty($_POST["street"]) && !empty($_POST["suburb"]) && !empty($_POST["city"]) && !empty($_POST["country"]))
+	{
+		  curl_setopt_array($curl, array(
   CURLOPT_PORT => "8080",
   CURLOPT_URL => "http://localhost:8080/address/create",
   CURLOPT_RETURNTRANSFER => true,
@@ -144,7 +144,15 @@ if ($err) {
 } else {
   echo $response;
 }
+	}
+	
+	else
+	{
+		echo "<p style='margin-left: 660px'>Error #: Empty fields detected!!!</p>";
+	}
+
 }
+
 ?>
 
 

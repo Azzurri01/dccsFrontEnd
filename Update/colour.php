@@ -100,12 +100,16 @@ $err = curl_error($curl);
 
 curl_close($curl);
 
-if ($err) {
+if ($err) 
+{
   echo "cURL Error #:" . $err;
-} else {
-  echo "<p style='margin-left: 660px'>Colour updated successfully!!!</p>";
-}
+} 
+	else
+	{
+		echo "<p style='margin-left: 660px'>Colour updated successfully!!!</p>";
 	}
+		
+}
 	
 	else
 	{

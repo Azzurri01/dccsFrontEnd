@@ -90,15 +90,21 @@ curl_setopt_array($curl, array(
 
 $response = curl_exec($curl);
 $err = curl_error($curl);
+$statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
 curl_close($curl);
 
-if ($err) {
+if ($err) 
+{
   echo "cURL Error #:" . $err;
-} else {
-  echo "<p style='margin-left: 550px'>$response</p>";
-}
+} 
+
+	else if($statusCode == 200)
+	{
+		echo "<p style='margin-left: 550px'>$response</p>";
 	}
+}
+	
 	else
 	{
 		echo "<p style='margin-left: 660px'>Error #: No ID entered!!!</p>";
